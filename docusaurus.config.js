@@ -32,6 +32,16 @@ module.exports = {
           position: 'left',
         },
         {
+          to: 'dashboard',
+          label: 'Dashboard',
+          position: 'right',
+        },
+        {
+          to: 'admin-dashboard',
+          label: 'Admin Dashboard',
+          position: 'right',
+        },
+        {
           to: 'login',
           label: 'Login',
           position: 'right',

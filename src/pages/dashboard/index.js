@@ -1,10 +1,10 @@
 import React from 'react';
 import Layout from '@theme/Layout';
-import styles from './login.module.scss';
+import styles from './dashboard.module.scss';
 
-function Login() {
+function Dashboard() {
   return (
-    <Layout title="Login">
+    <Layout title="Fellow Dashboard">
       <div
         style={{
           display: 'flex',
@@ -14,11 +14,11 @@ function Login() {
           fontSize: '20px',
         }}>
         <p>
-          Edit <code>pages/login/index.js</code>.
+          Edit <code>pages/dashboard/index.js</code>.
         </p>
       </div>
     </Layout>
   );
 }
 
-export default Login;
+export default Dashboard;
