@@ -1,2 +1,2 @@
-# DocuHub
-Generate effortless Documentation directly from your code editor
+# Fellow Stories
+Platform for MLH Fellows to share their stories and experiences
