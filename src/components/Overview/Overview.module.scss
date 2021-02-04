@@ -1,0 +1,21 @@
+.overviews {
+  display: grid;
+  gap: 20px;
+}
+
+.overview {
+  background-color: var(--ifm-color-primary);
+  border-radius: 5px;
+  padding: 0.8rem 1.6rem 1.1rem 1.6rem;
+}
+
+.overviewText {
+  color: #fff;
+  font-size: 2.2rem;
+  font-weight: 700;
+}
+
+.overviewValue {
+  color: #fff;
+  font-size: 1.2rem;
+}

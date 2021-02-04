@@ -1,0 +1,35 @@
+.storyItem {
+  border: 2px solid var(--ifm-color-primary);
+  border-radius: 5px;
+  padding: 10px 12px;
+  position: relative;
+  background-color: rgba(29, 83, 159, 0.02);
+}
+
+.title {
+  font-weight: 700;
+  font-size: 1.2rem;
+  color: var(--ifm-color-primary);
+}
+
+.date {
+  font-size: 0.8rem;
+  color: var(--ifm-color-primary);
+  margin-bottom: 5px;
+}
+
+.views {
+  font-size: 0.8rem;
+  color: var(--ifm-color-primary);
+  font-weight: 500;
+}
+
+.semibold {
+  font-weight: 600;
+}
+
+.editButton {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+}
