@@ -61,14 +61,14 @@ function Home() {
               <div className={styles.header__buttons}>
                 <Link
                   className={clsx(
-                    'fs-button fs-button-primary'
+                    'fs-button fs-button-secondary'
                   )}
                   to={useBaseUrl('stories/')}>
                   Read
                 </Link>
                 <Link
                   className={clsx(
-                    'fs-button fs-button-secondary'
+                    'fs-button fs-button-secondary-alt'
                   )}
                   to={useBaseUrl('register/')}>
                   <FontAwesomeIcon icon={faPen} /><span className="marginleft10">Write Yours</span>

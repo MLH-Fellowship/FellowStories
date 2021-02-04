@@ -1,0 +1,24 @@
+.dashboardContainer {
+  padding: 3rem 0;
+}
+
+.header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 0;
+  margin-bottom: 5px;
+}
+
+.title {
+  color: var(--ifm-color-primary);
+  font-size: 2.2rem;
+  flex: 1;
+  margin-bottom: 0;
+}
+
+.fellowStoriesContainer {
+  display: grid;
+  gap: 15px;
+}
