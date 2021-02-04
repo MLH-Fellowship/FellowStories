@@ -68,8 +68,8 @@ A platform for MLH Fellows to share their stories and experiences.
 
 ## How to Get Started?
 
-[![Requirements Up To Date](https://img.shields.io/badge/requirements-up%20to%20date-brightgreen)](https://github.com/PragatiVerma18/Fantastic-Falcons-1.0/blob/webapp/requirements.txt)
-[![Python](https://img.shields.io/badge/python-v3.7-blue)](https://www.python.org/)
+[![Dependencies Up To Date](https://img.shields.io/badge/dependencies-up%20to%20date-brightgreen)](https://github.com/MLH-Fellowship/FellowStories/blob/main/package.json)
+[![Node](https://img.shields.io/badge/node%40latest-%3E%3D%206.0.0-brightgreen)](https://nodejs.org/en/)
 
 ### GitHub Repository Structure
 
