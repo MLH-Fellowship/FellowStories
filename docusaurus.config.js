@@ -125,6 +125,7 @@ module.exports = {
           customCss: [
             require.resolve('./src/css/custom.scss'),
             require.resolve('./src/css/tabs.scss'),
+            require.resolve('./src/css/form.scss'),
           ],
         },
       },

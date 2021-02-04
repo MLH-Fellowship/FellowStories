@@ -1,0 +1,18 @@
+.fs-input-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.fs-label {
+  color: var(--ifm-color-primary);
+  margin-bottom: 3px;
+}
+
+.fs-input {
+  border: 2px solid var(--ifm-color-primary);
+  padding: 12px;
+  font-size: 1.1rem;
+  border-radius: 5px;
+  outline: none;
+  max-width: 350px;
+}

@@ -7,7 +7,7 @@ function Overview({ data }) {
         gridTemplateColumns: `${'1fr '.repeat(data.length)}`
       }}>
         {data.map(item => (
-          <div className={styles.overview}>
+          <div key={item.id} className={styles.overview}>
             <div className={styles.overviewText}>{item.value}</div>
             <div className={styles.overviewValue}>{item.text}</div>
           </div>
