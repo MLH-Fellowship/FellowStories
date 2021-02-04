@@ -88,14 +88,14 @@ $ git clone https://github.com/MLH-Fellowship/FellowStories.git
 $ cd FellowStories
 ```
 
-- Install all npm dependencies using
+- Install all yarn dependencies using
 ```
-npm i
+yarn install
 ```
 
 - Run the server using
 ```
-npm start
+yarn start
 ```
 
 ## MLH Fellowship( Fall 2020)
