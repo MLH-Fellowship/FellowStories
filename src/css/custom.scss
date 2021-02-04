@@ -48,6 +48,10 @@
   color: var(--ifm-color-secondary);
 }
 
+.marginleft5 {
+  margin-left: 5px;
+}
+
 .marginleft10 {
   margin-left: 10px;
 }
@@ -67,25 +71,62 @@
 
   &:hover {
     text-decoration: none;
-    background-color: var(--ifm-color-secondary-lighter);
   }
 }
 
 .fs-button-primary {
-  color: #333;
-  background-color: var(--ifm-color-secondary);
+  color: #fff;
+  background-color: var(--ifm-color-primary);
 
   &:hover {
-    color: #333;
+    color: #fff;
+    background-color: var(--ifm-color-primary-lighter);
   }
 }
 
-.fs-button-secondary {
+.fs-button-primary-alt {
   color: #fff;
   border: 2px solid var(--ifm-color-secondary);
 
   &:hover {
     color: #fff;
     background-color: rgba(255, 255, 255, 0.05);
+  }
+}
+
+.fs-button-secondary {
+  color: #333;
+  background-color: var(--ifm-color-secondary);
+
+  &:hover {
+    color: #333;
+    background-color: var(--ifm-color-secondary-lighter);
+  }
+}
+
+.fs-button-secondary-alt {
+  color: #fff;
+  border: 2px solid var(--ifm-color-secondary);
+
+  &:hover {
+    color: #fff;
+    background-color: rgba(255, 255, 255, 0.05);
+  }
+}
+
+.fs-button-small {
+  border-radius: 5px;
+  font-size: 0.9rem;
+  height: 30px;
+  padding: 0 10px;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  min-width: 60px;
+
+  &:hover {
+    text-decoration: none;
   }
 }
