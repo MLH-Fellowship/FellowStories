@@ -18,10 +18,18 @@
   }
 }
 
-.buttons {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.header__buttons {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+  gap: 20px;
+  margin-top: 30px;
+}
+
+@media screen and (max-width: 412px) {
+  .header__buttons {
+    flex-direction: column;
+    align-items: flex-start;
+  }
 }
 
 .features {
@@ -34,4 +42,25 @@
 .featureImage {
   height: 200px;
   width: 200px;
+}
+
+.header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.header__left {
+  text-align: left;
+  flex: 1;
+}
+
+.header__image {
+  width: 200px;
+}
+
+@media screen and (max-width: 768px) {
+  .header__image {
+    display: none;
+  }
 }
