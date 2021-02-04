@@ -27,7 +27,7 @@ module.exports = {
         //   position: 'left',
         // },
         {
-          to: 'blog',
+          to: 'stories',
           label: 'Stories',
           position: 'left',
         },
@@ -110,14 +110,16 @@ module.exports = {
         docs: {
           sidebarPath: require.resolve('./sidebars.js'),
           // Please change this to your repo.
-          editUrl:
-            'https://github.com/MLH-Fellowship/FellowStories/edit/master/website/',
+          editUrl: 'https://github.com/MLH-Fellowship/FellowStories/edit/main/blog/',
         },
         blog: {
           showReadingTime: true,
           // Please change this to your repo.
-          editUrl:
-            'https://github.com/MLH-Fellowship/FellowStories/edit/master/website/blog/',
+          editUrl: 'https://github.com/MLH-Fellowship/FellowStories/edit/main/blog/',
+          path: 'stories',
+          blogSidebarCount: 'ALL',
+          blogSidebarTitle: 'All stories',
+          routeBasePath: 'stories',
         },
         theme: {
           customCss: require.resolve('./src/css/custom.scss'),
@@ -125,5 +127,7 @@ module.exports = {
       },
     ],
   ],
-  plugins: ['docusaurus-plugin-sass'],
+  plugins: [
+    'docusaurus-plugin-sass',
+  ],
 };
