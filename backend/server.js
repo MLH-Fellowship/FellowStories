@@ -4,6 +4,7 @@ const passport = require('passport')
 const LocalStrategy = require('passport-local')
 const bodyParser = require('body-parser')
 const User = require('./models/User.js')
+const Admin = require('./models/Admin.js')
 const userRoutes = require('./routes/UserRoutes.js')
 require('dotenv').config({ path: `${__dirname}/config.env` })
 
@@ -22,8 +23,15 @@ app.use(require('express-session')({
 app.use(passport.initialize());
 app.use(passport.session());
 passport.use(new LocalStrategy(User.authenticate()));
-passport.serializeUser(User.serializeUser());
-passport.deserializeUser(User.deserializeUser());
+// passport.use('userLocal', new LocalStrategy(User.authenticate()));
+// passport.use('adminLocal', new LocalStrategy(Admin.authenticate()));
+passport.serializeUser(function(user, done) {
+  done(null, user);
+});
+passport.deserializeUser(function(user, done) {
+  if(user!=null)
+    done(null,user);
+});
 
 mongoose.connect(`mongodb+srv://${process.env.username}:${process.env.password}@cluster0-ulpnb.mongodb.net/test?retryWrites=true&w=majority`, {
     useNewUrlParser: true,
