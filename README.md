@@ -1,4 +1,4 @@
-<div align="center"> <img width="680" alt="Screenshot 2021-02-04 at 1 51 47 PM" src="https://user-images.githubusercontent.com/42115530/106882877-44b2d480-6705-11eb-9890-a989ff8ee4aa.png">
+<div align="center"> <img width="680" alt="Fellow Stories" src="https://repository-images.githubusercontent.com/335190155/1a750d00-672d-11eb-95f1-c71a960d3a9d">
 </div>
 
 <br /><br />
