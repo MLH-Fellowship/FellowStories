@@ -110,12 +110,12 @@ module.exports = {
         docs: {
           sidebarPath: require.resolve('./sidebars.js'),
           // Please change this to your repo.
-          editUrl: 'https://github.com/MLH-Fellowship/FellowStories/edit/main/blog/',
+          editUrl: 'https://github.com/MLH-Fellowship/FellowStories/edit/main/',
         },
         blog: {
           showReadingTime: true,
           // Please change this to your repo.
-          editUrl: 'https://github.com/MLH-Fellowship/FellowStories/edit/main/blog/',
+          editUrl: 'https://github.com/MLH-Fellowship/FellowStories/edit/main/',
           path: 'stories',
           blogSidebarCount: 'ALL',
           blogSidebarTitle: 'All stories',

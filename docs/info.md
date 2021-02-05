@@ -1,0 +1,4 @@
+---
+id: example
+---
+Lorem ipsum
