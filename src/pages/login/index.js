@@ -1,21 +1,72 @@
-import React from 'react';
-import Layout from '@theme/Layout';
-import styles from './login.module.scss';
+import React, { useState } from "react";
+import Layout from "@theme/Layout";
+import styles from "./login.module.scss";
 
 function Login() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleSubmit = (evt) => {
+    evt.preventDefault();
+    // Handle API call
+  };
   return (
     <Layout title="Login">
       <div
         style={{
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-          height: '50vh',
-          fontSize: '20px',
-        }}>
-        <p>
-          Edit <code>pages/login/index.js</code>.
-        </p>
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <h1 className={styles.title}>Login</h1>
+      </div>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <form onSubmit={handleSubmit}>
+          <div className={styles.inputs}>
+            <div className="fs-input-group">
+              <label className="fs-label">
+                <strong>Email</strong>
+              </label>
+              <input
+                className="fs-input"
+                type="email"
+                value={email}
+                placeholder="Email"
+                onChange={(e) => setEmail(e.target.value)}
+                required
+                style={{ minWidth: "350px" }}
+              />
+            </div>
+            <div className="fs-input-group">
+              <label className="fs-label">
+                <strong>Password</strong>
+              </label>
+              <input
+                className="fs-input"
+                type="password"
+                value={password}
+                placeholder="Password"
+                onChange={(e) => setPassword(e.target.value)}
+                required
+                style={{ minWidth: "350px" }}
+              />
+            </div>
+          </div>
+          <button
+            type="submit"
+            className="fs-button fs-button-primary"
+            style={{ minWidth: "350px", marginTop: "20px" }}
+          >
+            Login
+          </button>
+        </form>
       </div>
     </Layout>
   );
