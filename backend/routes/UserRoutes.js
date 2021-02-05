@@ -9,7 +9,11 @@ router.get("/register", function(req, res) {
 
 // handle sign up logic
 router.post("/register", function(req, res) {
-    var newUser = new User({ username: req.body.username });
+    var newUser = new User({
+        username: req.body.username,
+        first_name: req.body.first_name,
+        last_name: req.body.last_name
+    });
     User.register(newUser, req.body.password, function(err, user) {
         if (err) {
             return res.redirect("/register");
