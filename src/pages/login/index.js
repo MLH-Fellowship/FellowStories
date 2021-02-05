@@ -41,6 +41,7 @@ function Login() {
                 placeholder="Email"
                 onChange={(e) => setEmail(e.target.value)}
                 required
+                style={{ minWidth: "350px" }}
               />
             </div>
             <div className="fs-input-group">
@@ -54,10 +55,15 @@ function Login() {
                 placeholder="Password"
                 onChange={(e) => setPassword(e.target.value)}
                 required
+                style={{ minWidth: "350px" }}
               />
             </div>
           </div>
-          <button type="submit" className="fs-button fs-button-primary">
+          <button
+            type="submit"
+            className="fs-button fs-button-primary"
+            style={{ minWidth: "350px", marginTop: "20px" }}
+          >
             Login
           </button>
         </form>
