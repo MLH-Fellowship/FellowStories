@@ -1,5 +1,6 @@
 const express = require('express')
 const simpleGit = require('simple-git')
+const fs = require('fs')
 const router = express.Router()
 const git = simpleGit()
 const middleware = require("../middleware/auth.js")
@@ -38,12 +39,24 @@ router.post('/new-story', middleware.isLoggedIn, function (req, res) {
           story.save()
           user.stories.push(story)
           user.save()
+
+          // Save to stories and push to GitHub
+          let title = req.body.title
+          let content = req.body.content
+          fs.writeFile(`../FellowStories/stories/${file_name}.md`, `---\ntitle: ${title}\nauthor: ${user.first_name} ${user.last_name}\n---\n${content}\n`, function (err) {
+            if (err) throw errs
+            git.cwd('../FellowStories')
+              .add('./*')
+              .commit('add: new blog')
+              // .push('origin', 'main') // uncomment once no more changes are left to add to front-end to avoid conflicts
+              // .pull() // pull to keep reppsitory updated
+          })
+
           res.send("Successfully posted story!")
         }
       })
     }
   })
-  // Push to GitHub
 })
 
 module.exports = router
