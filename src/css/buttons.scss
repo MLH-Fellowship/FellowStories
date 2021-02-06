@@ -1,0 +1,77 @@
+.fs-button {
+  border: none;
+  border-radius: 5px;
+  height: 45px;
+  padding: 0 20px;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  font-weight: 700;
+  min-width: 100px;
+  cursor: pointer;
+
+  &:hover {
+    text-decoration: none;
+  }
+}
+
+.fs-button-primary {
+  color: #fff;
+  background-color: var(--ifm-color-primary);
+
+  &:hover {
+    color: #fff;
+    background-color: var(--ifm-color-primary-lighter);
+  }
+}
+
+.fs-button-primary-alt {
+  color: #fff;
+  border: 2px solid var(--ifm-color-secondary);
+
+  &:hover {
+    color: #fff;
+    background-color: rgba(255, 255, 255, 0.05);
+  }
+}
+
+.fs-button-secondary {
+  color: #333;
+  background-color: var(--ifm-color-secondary);
+
+  &:hover {
+    color: #333;
+    background-color: var(--ifm-color-secondary-lighter);
+  }
+}
+
+.fs-button-secondary-alt {
+  color: #fff;
+  border: 2px solid var(--ifm-color-secondary);
+
+  &:hover {
+    color: #fff;
+    background-color: rgba(255, 255, 255, 0.05);
+  }
+}
+
+.fs-button-small {
+  border: none;
+  border-radius: 5px;
+  font-size: 0.9rem;
+  height: 30px;
+  padding: 0 10px;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  min-width: 60px;
+  cursor: pointer;
+
+  &:hover {
+    text-decoration: none;
+  }
+}
