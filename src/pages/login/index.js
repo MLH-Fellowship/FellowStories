@@ -1,4 +1,5 @@
 import React, { useState, useContext } from "react";
+import { useHistory } from "react-router-dom";
 import Layout from "@theme/Layout";
 import useBaseUrl from '@docusaurus/useBaseUrl';
 import Navbar from '../../theme/Navbar';
@@ -8,6 +9,7 @@ import AppContext from '../../components/AppContext';
 
 function Login() {
   const { userdata, setUserdata } = useContext(AppContext);
+  const history = useHistory();
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -18,8 +20,10 @@ function Login() {
     // Handle API call
     if(type === "admin") {
       setUserdata({loggedIn: true});
+      history.push("/admin-dashboard");
     } else {
       setUserdata({loggedIn: true});
+      history.push("/dashboard");
     }
   };
   return (
