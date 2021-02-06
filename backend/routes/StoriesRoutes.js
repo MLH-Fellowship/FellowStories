@@ -1,6 +1,7 @@
 const express = require('express')
 const simpleGit = require('simple-git')
 const fs = require('fs')
+const { v4: uuidv4 } = require('uuid');
 const router = express.Router()
 const git = simpleGit()
 const middleware = require("../middleware/auth.js")
@@ -17,8 +18,7 @@ router.get('/new-story', function (req, res) {
 router.post('/new-story', middleware.isLoggedIn, function (req, res) {
   // Save story
   let file_name = new Date()
-  file_name = file_name.toISOString().slice(0,10)
-  // todo: add functionality for multiple users to add multiple blogs on the same day
+  file_name = file_name.toISOString().slice(0,10) + '-' + uuidv4()
   let owner_fellow = {
     id: req.user._id
   }
