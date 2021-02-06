@@ -53,7 +53,7 @@ function Dashboard() {
   return (
     <Layout 
       title="Fellow Dashboard">
-      <Navbar userdata={userdata} />
+      <Navbar />
 
       <div className="container">
         <div className={styles.dashboardContainer}>

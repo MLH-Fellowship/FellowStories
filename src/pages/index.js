@@ -1,12 +1,10 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import clsx from 'clsx';
 import Layout from '@theme/Layout';
 import Navbar from '../theme/Navbar';
 import Link from '@docusaurus/Link';
 import useBaseUrl from '@docusaurus/useBaseUrl';
 import styles from './styles.module.scss';
-
-import AppContext from '../components/AppContext';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPen } from '@fortawesome/free-solid-svg-icons'
@@ -50,12 +48,10 @@ function Feature({imageUrl, title, description}) {
 }
 
 function Home() {
-  const { userdata } = useContext(AppContext);
-
   return (
     <Layout
       description="Platform for MLH Fellows to share their stories and experiences">
-      <Navbar userdata={userdata} />
+      <Navbar />
 
       <header className={clsx('hero hero--primary', styles.heroBanner)}>
         <div className="container">

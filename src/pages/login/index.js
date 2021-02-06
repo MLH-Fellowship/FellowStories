@@ -1,14 +1,13 @@
 import React, { useState, useContext } from "react";
 import { useHistory } from "react-router-dom";
 import Layout from "@theme/Layout";
-import useBaseUrl from '@docusaurus/useBaseUrl';
 import Navbar from '../../theme/Navbar';
 import styles from "./login.module.scss";
 
 import AppContext from '../../components/AppContext';
 
 function Login() {
-  const { userdata, setUserdata } = useContext(AppContext);
+  const { setUserdata } = useContext(AppContext);
   const history = useHistory();
 
   const [email, setEmail] = useState("");
@@ -19,17 +18,23 @@ function Login() {
     evt.preventDefault();
     // Handle API call
     if(type === "admin") {
-      setUserdata({loggedIn: true});
+      setUserdata({
+        loggedIn: true,
+        userType: 'admin',
+      });
       history.push("/admin-dashboard");
     } else {
-      setUserdata({loggedIn: true});
+      setUserdata({
+        loggedIn: true,
+        userType: 'fellow',
+      });
       history.push("/dashboard");
     }
   };
   return (
     <Layout
       title="Login">
-      <Navbar userdata={userdata} />
+      <Navbar />
 
       <div
         style={{

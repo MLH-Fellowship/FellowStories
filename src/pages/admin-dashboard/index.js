@@ -39,7 +39,7 @@ function AdminDashboard() {
   return (
     <Layout
       title="Admin Dashboard">
-      <Navbar userdata={userdata} />
+      <Navbar />
 
       <div className="container">
         <div className={styles.dashboardContainer}>

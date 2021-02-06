@@ -35,7 +35,7 @@ function NewStory() {
   return (
     <Layout 
       title="New Story">
-      <Navbar userdata={userdata} />
+      <Navbar />
       <div className="container">
         <div className={styles.newStoryContainer}>
 
