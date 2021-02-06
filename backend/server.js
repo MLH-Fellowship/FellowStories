@@ -57,7 +57,7 @@ app.get('/', (req, res) => {
 })
 
 app.use('/', userRoutes)
-app.use('/stories', storiesRoutes)
+app.use('/dashboard', storiesRoutes)
 
 const PORT = process.env.PORT || 5000
 
