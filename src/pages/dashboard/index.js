@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import AppContext from '../../components/AppContext';
 import clsx from 'clsx';
 import Layout from '@theme/Layout';
+import Navbar from '../../theme/Navbar';
 import Link from '@docusaurus/Link';
 import useBaseUrl from '@docusaurus/useBaseUrl';
 import styles from './dashboard.module.scss';
@@ -46,8 +48,13 @@ const fellowStories = [
 ]
 
 function Dashboard() {
+  const { userdata } = useContext(AppContext);
+
   return (
-    <Layout title="Fellow Dashboard">
+    <Layout 
+      title="Fellow Dashboard">
+      <Navbar userdata={userdata} />
+
       <div className="container">
         <div className={styles.dashboardContainer}>
 

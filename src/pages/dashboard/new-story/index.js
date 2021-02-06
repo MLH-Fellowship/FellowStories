@@ -1,9 +1,16 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
+import clsx from 'clsx';
+import AppContext from '../../../components/AppContext';
 import Layout from '@theme/Layout';
+import Link from '@docusaurus/Link';
+import useBaseUrl from '@docusaurus/useBaseUrl';
+import Navbar from '../../../theme/Navbar';
 import styles from './new-story.module.scss';
 import MDEditor from '@uiw/react-md-editor';
 
 function NewStory() {
+  const { userdata } = useContext(AppContext);
+
   const [title, setTitle] = useState("");
   const [content, setContent] = React.useState("**Hello world!!!**");
 
@@ -26,14 +33,23 @@ function NewStory() {
   }
 
   return (
-    <Layout title="New Story">
+    <Layout 
+      title="New Story">
+      <Navbar userdata={userdata} />
       <div className="container">
         <div className={styles.newStoryContainer}>
 
           <div className={styles.header}>
             <h1 className={styles.title}>New Story</h1>
             <div className={styles.actionButtons}>
-              <button type="submit" className="fs-button fs-button-secondary" form="newStory">Publish</button>
+              <Link
+                className={clsx(
+                  'fs-button fs-button-primary'
+                )}
+                to={useBaseUrl('dashboard/')}>
+                Cancel
+              </Link>
+              <button type="submit" className="fs-button fs-button-secondary marginleft10" form="newStory">Publish</button>
             </div>
           </div>
 

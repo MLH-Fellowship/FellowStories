@@ -1,8 +1,7 @@
-import React, { useState } from 'react';
-import clsx from 'clsx';
+import React, { useState, useContext } from 'react';
+import AppContext from '../../components/AppContext';
 import Layout from '@theme/Layout';
-import Link from '@docusaurus/Link';
-import useBaseUrl from '@docusaurus/useBaseUrl';
+import Navbar from '../../theme/Navbar';
 import styles from './admin-dashboard.module.scss';
 import Overview from '../../components/Overview/Overview';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
@@ -28,6 +27,8 @@ const approvedFellowList = [
 ]
 
 function AdminDashboard() {
+  const { userdata } = useContext(AppContext);
+
   const [email, setEmail] = useState("");
 
   const handleSubmit = (evt) => {
@@ -36,7 +37,10 @@ function AdminDashboard() {
   }
 
   return (
-    <Layout title="Admin Dashboard">
+    <Layout
+      title="Admin Dashboard">
+      <Navbar userdata={userdata} />
+
       <div className="container">
         <div className={styles.dashboardContainer}>
 

@@ -31,21 +31,6 @@ module.exports = {
           label: 'Stories',
           position: 'left',
         },
-        {
-          to: 'dashboard',
-          label: 'Dashboard',
-          position: 'right',
-        },
-        {
-          to: 'admin-dashboard',
-          label: 'Admin Dashboard',
-          position: 'right',
-        },
-        {
-          to: 'login',
-          label: 'Login',
-          position: 'right',
-        },
         // {
         //   href: 'https://github.com/facebook/docusaurus',
         //   label: 'GitHub',
@@ -126,6 +111,7 @@ module.exports = {
             require.resolve('./src/css/custom.scss'),
             require.resolve('./src/css/tabs.scss'),
             require.resolve('./src/css/form.scss'),
+            require.resolve('./src/css/buttons.scss'),
           ],
         },
       },
