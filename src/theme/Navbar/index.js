@@ -97,8 +97,12 @@ function Navbar() {
           {/* Custom Links start */}
           {userdata && userdata.loggedIn ?
             <>
-              <NavbarItem to='dashboard' label='Dashboard' position='right' />
-              <NavbarItem to='admin-dashboard' label='Admin Dashboard' position='right' />
+              {userdata.userType === 'fellow' ?
+                <NavbarItem to='dashboard' label='Dashboard' position='right' /> : ''
+              }
+              {userdata.userType === 'admin' ?
+                <NavbarItem to='admin-dashboard' label='Admin Dashboard' position='right' /> : ''
+              }
               <NavbarItem to='/' label='Logout' position='right' onClick={() => logout()} />
             </>
             :
