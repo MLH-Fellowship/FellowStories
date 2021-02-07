@@ -32,27 +32,26 @@ router.post('/new-story', middleware.isLoggedIn, function (req, res) {
       console.log(err)
       res.redirect("/")
     } else {
-      Stories.create(newStory, function (err, story) {
+      Stories.create(newStory, async (err, story) => {
         if(err) {
           console.log(err)
         } else {
           story.save()
           user.stories.push(story)
           user.save()
-
           // Save to stories and push to GitHub
           let title = req.body.title
           let content = req.body.content
+          await git.cwd('../FellowStories')
+                  // .pull() // pull to update repository before pushing changes
           fs.writeFile(`../FellowStories/stories/${file_name}.md`, `---\ntitle: ${title}\nauthor: ${user.first_name} ${user.last_name}\n---\n${content}\n`, function (err) {
             if (err) throw err
-            git.cwd('../FellowStories')
-              // .pull() // pull to update repository before pushing changes
-              .add('./*')
-              .commit('add: new blog')
-              // .push('origin', 'main') // uncomment once no more changes are left to add to front-end to avoid conflicts
           })
-
+          await git.add('./*')
+                  .commit('add: new blog')
+                  // .push('origin', 'main') // uncomment once no more changes are left to add to front-end to avoid conflicts
           res.send("Successfully posted story!")
+          // res.redirect('/dashboard')
         }
       })
     }
