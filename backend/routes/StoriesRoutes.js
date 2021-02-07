@@ -1,21 +1,22 @@
 const express = require('express')
 const simpleGit = require('simple-git')
 const fs = require('fs')
-const { v4: uuidv4 } = require('uuid');
+const { v4: uuidv4 } = require('uuid')
 const router = express.Router()
 const git = simpleGit()
-const middleware = require("../middleware/auth.js")
+const middleware = require('../middleware/auth.js')
 
 const User = require('../models/User.js')
 const Stories = require('../models/Stories.js')
 
 // const {} = require()
 
-router.get('/new-story', function (req, res) {
+router.get('/dashboard/new-story', function (req, res) {
   res.send('Add a new story!')
 })
 
-router.post('/new-story', middleware.isLoggedIn, function (req, res) {
+// Post a story
+router.post('/dashboard/new-story', middleware.isLoggedIn, function (req, res) {
   // Save story
   let file_name = new Date()
   file_name = file_name.toISOString().slice(0,10) + '-' + uuidv4()
@@ -30,7 +31,7 @@ router.post('/new-story', middleware.isLoggedIn, function (req, res) {
   User.findById(req.user._id, function (err, user) {
     if(err) {
       console.log(err)
-      res.redirect("/")
+      res.redirect('/')
     } else {
       Stories.create(newStory, async (err, story) => {
         if(err) {
@@ -48,9 +49,34 @@ router.post('/new-story', middleware.isLoggedIn, function (req, res) {
             if (err) throw err
           })
           await git.add('./*')
-                  .commit('add: new blog')
+                  .commit('chore: add new blog')
                   // .push('origin', 'main') // uncomment once no more changes are left to add to front-end to avoid conflicts
-          res.send("Successfully posted story!")
+          res.send('Successfully posted story!')
+          // res.redirect('/dashboard')
+        }
+      })
+    }
+  })
+})
+
+// Delete a story
+router.delete('/stories/:file_name', middleware.checkStoriesOwnership, function(req, res) {
+  Stories.findOneAndDelete({ file_name: req.params.file_name }, function(err, story) {
+    if(err) {
+      res.redirect('/dashboard')
+    } else {
+      User.findByIdAndUpdate(story.owner_fellow.id, { $pull: { stories: story._id } }, async (err, user) => {
+        if(err) {
+          console.log(err)
+          res.redirect('/')
+        } else {
+          await git.cwd('../FellowStories')
+                  // .pull() // pull to update repository before pushing changes
+          fs.unlinkSync(`../FellowStories/stories/${req.params.file_name}.md`)
+          await git.add('./*')
+                  .commit('chore: delete blog')
+                  // .push('origin', 'main') // uncomment once no more changes are left to add to front-end to avoid conflicts
+          res.send('Successfully deleted!')
           // res.redirect('/dashboard')
         }
       })
