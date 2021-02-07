@@ -1,8 +1,8 @@
 import React from 'react';
 import clsx from 'clsx';
 import Layout from '@theme/Layout';
+import Navbar from '../theme/Navbar';
 import Link from '@docusaurus/Link';
-import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import useBaseUrl from '@docusaurus/useBaseUrl';
 import styles from './styles.module.scss';
 
@@ -11,7 +11,7 @@ import { faPen } from '@fortawesome/free-solid-svg-icons'
 
 const features = [
   {
-    title: 'Write about the projects you made',
+    title: 'Write About Projects You Worked On',
     imageUrl: 'img/illustrations/code-review.svg',
     description: (
       <>
@@ -20,7 +20,7 @@ const features = [
     ),
   },
   {
-    title: 'Focus on What Matters',
+    title: 'Tell your story, other fellows are listening',
     imageUrl: 'img/illustrations/remote-team.svg',
     description: (
       <>
@@ -48,11 +48,11 @@ function Feature({imageUrl, title, description}) {
 }
 
 function Home() {
-  const context = useDocusaurusContext();
-  const {siteConfig = {}} = context;
   return (
     <Layout
       description="Platform for MLH Fellows to share their stories and experiences">
+      <Navbar />
+
       <header className={clsx('hero hero--primary', styles.heroBanner)}>
         <div className="container">
           <div className={styles.header}>
@@ -70,7 +70,7 @@ function Home() {
                   className={clsx(
                     'fs-button fs-button-secondary-alt'
                   )}
-                  to={useBaseUrl('register/')}>
+                  to={useBaseUrl('login/')}>
                   <FontAwesomeIcon icon={faPen} /><span className="marginleft10">Write Yours</span>
                 </Link>
               </div>
