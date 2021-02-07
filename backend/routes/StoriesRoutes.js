@@ -44,12 +44,12 @@ router.post('/new-story', middleware.isLoggedIn, function (req, res) {
           let title = req.body.title
           let content = req.body.content
           fs.writeFile(`../FellowStories/stories/${file_name}.md`, `---\ntitle: ${title}\nauthor: ${user.first_name} ${user.last_name}\n---\n${content}\n`, function (err) {
-            if (err) throw errs
+            if (err) throw err
             git.cwd('../FellowStories')
+              // .pull() // pull to update repository before pushing changes
               .add('./*')
               .commit('add: new blog')
               // .push('origin', 'main') // uncomment once no more changes are left to add to front-end to avoid conflicts
-              // .pull() // pull to keep reppsitory updated
           })
 
           res.send("Successfully posted story!")
