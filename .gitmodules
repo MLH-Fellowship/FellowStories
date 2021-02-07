@@ -1,0 +1,3 @@
+[submodule "FellowStories"]
+	path = FellowStories
+	url = git@github.com:MLH-Fellowship/FellowStories.git
