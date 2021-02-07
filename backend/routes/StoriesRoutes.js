@@ -49,7 +49,7 @@ router.post('/dashboard/new-story', middleware.isLoggedIn, function (req, res) {
             if (err) throw err
           })
           await git.add('./*')
-                  .commit('add: new blog')
+                  .commit('chore: add new blog')
                   // .push('origin', 'main') // uncomment once no more changes are left to add to front-end to avoid conflicts
           res.send('Successfully posted story!')
           // res.redirect('/dashboard')
@@ -65,13 +65,19 @@ router.delete('/stories/:file_name', middleware.checkStoriesOwnership, function(
     if(err) {
       res.redirect('/dashboard')
     } else {
-      User.findByIdAndUpdate(story.owner_fellow.id, { $pull: { stories: story._id } }, function (err, user) {
+      User.findByIdAndUpdate(story.owner_fellow.id, { $pull: { stories: story._id } }, async (err, user) => {
         if(err) {
           console.log(err)
           res.redirect('/')
         } else {
-          // res.redirect('/dashboard')
+          await git.cwd('../FellowStories')
+                  // .pull() // pull to update repository before pushing changes
+          fs.unlinkSync(`../FellowStories/stories/${req.params.file_name}.md`)
+          await git.add('./*')
+                  .commit('chore: delete blog')
+                  // .push('origin', 'main') // uncomment once no more changes are left to add to front-end to avoid conflicts
           res.send('Successfully deleted!')
+          // res.redirect('/dashboard')
         }
       })
     }

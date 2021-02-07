@@ -14,7 +14,7 @@ middlewareObj.checkStoriesOwnership = function(req, res, next) {
 	if(req.isAuthenticated()) {
 		Stories.findOne({ file_name: req.params.file_name }, function(err, story) {
 			if(err || !story) {
-				res.redirect('Oops, story not found!')
+				res.send('Oops, story not found!')
 			} else {
 				if(story.owner_fellow.id.equals(req.user._id)) {
 					next()
