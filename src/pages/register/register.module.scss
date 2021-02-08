@@ -1,0 +1,18 @@
+.title {
+  color: var(--ifm-color-primary);
+  font-size: 3rem;
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+
+.inputs {
+  display: grid;
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+.inputsRow {
+  display: grid;
+  gap: 20px;
+  grid-template-columns: 1fr 1fr;
+}

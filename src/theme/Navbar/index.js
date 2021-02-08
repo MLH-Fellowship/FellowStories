@@ -35,6 +35,7 @@ function Navbar() {
   const { userdata, setUserdata } = useContext(AppContext);
   const logout = () => {
     setUserdata({ loggedIn: false });
+    localStorage.removeItem('USER_DATA');
   }
 
   const {
@@ -107,6 +108,7 @@ function Navbar() {
             </>
             :
             <>
+              <NavbarItem to='register' label='Register' position='right' />
               <NavbarItem to='login' label='Login' position='right' />
             </>
           }

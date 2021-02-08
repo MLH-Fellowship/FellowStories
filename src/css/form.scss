@@ -17,3 +17,11 @@
   outline: none;
   max-width: 350px;
 }
+
+.fs-alert-error {
+  color: var(--ifm-color-red);
+  background-color: var(--ifm-color-red-background);
+  // border: 1px solid var(--ifm-color-red);
+  border-radius: 5px;
+  padding: 10px;
+}

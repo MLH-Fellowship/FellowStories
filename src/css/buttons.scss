@@ -15,6 +15,12 @@
   &:hover {
     text-decoration: none;
   }
+
+  &:disabled, &.fs-button-disabled {
+    opacity: 0.7;
+    user-select: none;
+    pointer-events: none;
+  }
 }
 
 .fs-button-primary {
@@ -35,6 +41,13 @@
     color: #fff;
     background-color: rgba(255, 255, 255, 0.05);
   }
+}
+
+.fs-button-primary-light {
+  color: var(--ifm-color-primary);
+  border: 1px solid var(--ifm-color-primary);
+  background-color: var(--ifm-color-primary-background);
+  font-weight: 500;
 }
 
 .fs-button-secondary {

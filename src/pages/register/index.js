@@ -2,19 +2,19 @@ import React, { useState, useContext } from "react";
 import { useHistory } from "react-router-dom";
 import Layout from "@theme/Layout";
 import Navbar from '../../theme/Navbar';
-import Link from '@docusaurus/Link';
-import clsx from 'clsx';
-import useBaseUrl from '@docusaurus/useBaseUrl';
-import styles from "./login.module.scss";
-import PulseLoader from "react-spinners/PulseLoader";
+import styles from "./register.module.scss";
 import axios from 'axios';
+import PulseLoader from "react-spinners/PulseLoader";
 
 import AppContext from '../../components/AppContext';
 
-function Login() {
+function Register() {
   const { userdata, setUserdata } = useContext(AppContext);
   const history = useHistory();
 
+  const [firstname, setFirstname] = useState("");
+  const [lastname, setLastname] = useState("");
+  const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
@@ -25,33 +25,31 @@ function Login() {
     setLoading(true);
     // Handle API call
     axios
-      .post(`${process.env.API_ENDPOINT}/auth/local`, {
-        identifier: email,
+      .post(`${process.env.API_ENDPOINT}/auth/local/register`, {
+        firstname: firstname,
+        lastname: lastname,
+        username: username,
+        email: email,
         password: password,
       })
       .then(response => {
         // Handle success.
         setLoading(false);
-        console.log('Logged in!');
+        console.log('Registered!');
         console.log('User Data', response.data);
-        const userType = response.data.user.role.name.toLowerCase();
         const newUserDataState = {
           loggedIn: true,
-          userType: userType,
+          userType: 'fellow',
           jwt: response.data.jwt,
           user: response.data.user,
         }
-        setUserdata(newUserDataState);
         localStorage.setItem('USER_DATA', JSON.stringify(newUserDataState));
-        if(userType === 'fellow') {
-          history.push("/dashboard");
-        } else if(userType === 'admin') {
-          history.push("/admin-dashboard");
-        }
+        setUserdata(newUserDataState);
+        history.push("/dashboard");
         setError('');
       })
       .catch(error => {
-        // Handle error
+        // Handle error.
         setLoading(false);
         console.log('An error occurred:', error.response);
         setError(error.response?.data?.message[0]?.messages[0]?.message);
@@ -59,7 +57,7 @@ function Login() {
   };
   return (
     <Layout
-      title="Login">
+      title="Register">
       <Navbar />
 
       <div
@@ -69,7 +67,7 @@ function Login() {
           alignItems: "center",
         }}
       >
-        <h1 className={styles.title}>Login</h1>
+        <h1 className={styles.title}>Register</h1>
       </div>
       <div
         style={{
@@ -79,23 +77,65 @@ function Login() {
           alignItems: "center",
         }}
       >
-        <div className="fs-alert-error" style={{ minWidth: "350px", marginBottom: "20px", display: error ? "flex" : "none"}}>
-          {error}
-        </div>
         <form onSubmit={handleSubmit}>
+          <div className="fs-alert-error" style={{ minWidth: "100%", marginBottom: "20px", display: error ? "flex" : "none"}}>
+            {error}
+          </div>
           <div className={styles.inputs}>
+            <div className={styles.inputsRow}>
+              <div className="fs-input-group">
+                <label className="fs-label">
+                  <strong>First Name</strong>
+                </label>
+                <input
+                  className="fs-input"
+                  type="text"
+                  value={firstname}
+                  placeholder="First Name"
+                  onChange={(e) => setFirstname(e.target.value)}
+                  required
+                />
+              </div>
+              <div className="fs-input-group">
+                <label className="fs-label">
+                  <strong>Last Name</strong>
+                </label>
+                <input
+                  className="fs-input"
+                  type="text"
+                  value={lastname}
+                  placeholder="Last Name"
+                  onChange={(e) => setLastname(e.target.value)}
+                  required
+                />
+              </div>
+            </div>
             <div className="fs-input-group">
               <label className="fs-label">
-                <strong>Email / Username</strong>
+                <strong>Username</strong>
               </label>
               <input
                 className="fs-input"
                 type="text"
+                value={username}
+                placeholder="Username"
+                onChange={(e) => setUsername(e.target.value)}
+                required
+                style={{ minWidth: "100%" }}
+              />
+            </div>
+            <div className="fs-input-group">
+              <label className="fs-label">
+                <strong>Email</strong>
+              </label>
+              <input
+                className="fs-input"
+                type="email"
                 value={email}
                 placeholder="Email"
                 onChange={(e) => setEmail(e.target.value)}
                 required
-                style={{ minWidth: "350px" }}
+                style={{ minWidth: "100%" }}
               />
             </div>
             <div className="fs-input-group">
@@ -109,7 +149,7 @@ function Login() {
                 placeholder="Password"
                 onChange={(e) => setPassword(e.target.value)}
                 required
-                style={{ minWidth: "350px" }}
+                style={{ minWidth: "100%" }}
               />
             </div>
           </div>
@@ -117,26 +157,18 @@ function Login() {
             disabled={loading}
             type="submit"
             className="fs-button fs-button-primary"
-            style={{ minWidth: "350px", marginTop: "10px", marginBottom: "25px" }}
+            style={{ width: "100%", marginTop: "10px", marginBottom: "60px" }}
           >
             {loading ?
               <PulseLoader color={'white'} size={10} />
               :
-              'Login'
+              'Register'
             }
           </button>
-          <Link
-            className={clsx(
-              'fs-button fs-button-primary-light'
-            )}
-            to={useBaseUrl('register/')}
-            style={{ minWidth: "350px", marginBottom: "60px", display: "flex"}}>
-            New Fellow? Register.
-          </Link>
         </form>
       </div>
     </Layout>
   );
 }
 
-export default Login;
+export default Register;
