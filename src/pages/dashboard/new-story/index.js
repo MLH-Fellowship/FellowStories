@@ -1,35 +1,66 @@
 import React, { useState, useContext } from 'react';
 import clsx from 'clsx';
-import AppContext from '../../../components/AppContext';
+import { useHistory } from "react-router-dom";
 import Layout from '@theme/Layout';
 import Link from '@docusaurus/Link';
 import useBaseUrl from '@docusaurus/useBaseUrl';
 import Navbar from '../../../theme/Navbar';
 import styles from './new-story.module.scss';
 import MDEditor from '@uiw/react-md-editor';
+import PulseLoader from "react-spinners/PulseLoader";
+import axios from 'axios';
+
+import AppContext from '../../../components/AppContext';
 
 function NewStory() {
   const { userdata } = useContext(AppContext);
+  const history = useHistory();
 
   const [title, setTitle] = useState("");
   const [content, setContent] = React.useState("**Hello world!!!**");
+  const [loading, setLoading] = useState(false);
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
+    setLoading(true);
 
     // Add markdown header
-    const markdown = `
-      ---
-      title: ${title}
-      author: Anonymous
-      author_title: MLH Fellow
-      ---
+    // const markdown = `
+    //   ---
+    //   title: ${title}
+    //   author: Anonymous
+    //   author_title: MLH Fellow
+    //   ---
 
-      ${content}
-    `
+    //   ${content}
+    // `
 
     // Handle API call
-    alert(markdown)
+    axios
+      .post(`${process.env.API_ENDPOINT}/stories`,
+      {
+        title: title,
+        author: userdata.user.id,
+        content: content,
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${userdata.jwt}`,
+        },
+      })
+      .then(response => {
+        // Handle success
+        setLoading(false);
+        console.log('Form Response', response.data);
+        history.push('/dashboard');
+        // setError('');
+      })
+      .catch(error => {
+        // Handle error
+        setLoading(false);
+        console.log('An error occurred:', error.response);
+        // setError(error.response?.data?.message[0]?.messages[0]?.message);
+      });
   }
 
   return (
@@ -44,12 +75,22 @@ function NewStory() {
             <div className={styles.actionButtons}>
               <Link
                 className={clsx(
-                  'fs-button fs-button-primary'
+                  `fs-button fs-button-primary ${loading ? 'fs-button-disabled' : ''}`
                 )}
                 to={useBaseUrl('dashboard/')}>
                 Cancel
               </Link>
-              <button type="submit" className="fs-button fs-button-secondary marginleft10" form="newStory">Publish</button>
+              <button 
+                disabled={loading}
+                type="submit" 
+                className="fs-button fs-button-secondary marginleft10" 
+                form="newStory">
+                {loading ?
+                  <PulseLoader color={'#333'} size={10} />
+                  :
+                  'Publish'
+                }
+              </button>
             </div>
           </div>
 

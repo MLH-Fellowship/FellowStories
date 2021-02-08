@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import AppContext from '../../components/AppContext';
 import clsx from 'clsx';
 import Layout from '@theme/Layout';
@@ -9,46 +9,52 @@ import styles from './dashboard.module.scss';
 import Overview from '../../components/Overview/Overview';
 import StoryItem from '../../components/StoryItem/StoryItem';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
-
-const overviewData = [
-  {
-    id: '1',
-    text: 'Stories written',
-    value: '12',
-  },
-  {
-    id: '2',
-    text: 'Total views',
-    value: '3205',
-  },
-]
-
-const fellowStories = [
-  {
-    id: '1',
-    title: 'First Day as a Fellow',
-    published: 'Feb 1, 2021',
-    edited: 'Feb 2, 2021',
-    views: '2304',
-  },
-  {
-    id: '2',
-    title: 'Orientation Hackathon Experience',
-    published: 'Feb 2, 2021',
-    edited: 'Feb 3, 2021',
-    views: '733',
-  },
-  {
-    id: '3',
-    title: 'Meeting new friends',
-    published: 'Feb 3, 2021',
-    edited: 'Feb 4, 2021',
-    views: '60',
-  },
-]
+import axios from 'axios';
+import PulseLoader from "react-spinners/PulseLoader";
 
 function Dashboard() {
   const { userdata } = useContext(AppContext);
+
+  const [fellowStories, setFellowStories] = useState([]);
+  const [fellowStoriesLoading, setFellowStoriesLoading] = useState(false);
+  
+  const overviewData = [
+    {
+      id: '1',
+      text: 'Stories written',
+      value: fellowStories.length,
+    },
+    {
+      id: '2',
+      text: 'Total views',
+      value: 0,
+    },
+  ]
+
+  const fetchFellowStories = () => {
+    setFellowStoriesLoading(true);
+    axios
+      .get(`${process.env.API_ENDPOINT}/stories`, {
+        headers: {
+          Authorization: `Bearer ${userdata.jwt}`,
+        },
+      })
+      .then(response => {
+        // Handle success
+        setFellowStoriesLoading(false);
+        console.log('Fellow stories', response.data);
+        setFellowStories(response.data);
+      })
+      .catch(error => {
+        // Handle error
+        setFellowStoriesLoading(false);
+        console.log('An error occurred:', error.response);
+      });
+  }
+
+  useEffect(() => {
+    fetchFellowStories();
+  }, []);
 
   return (
     <Layout 
@@ -59,7 +65,7 @@ function Dashboard() {
         <div className={styles.dashboardContainer}>
 
           <div className={styles.header}>
-            <h1 className={styles.title}>Hey Pawan!</h1>
+            <h1 className={styles.title}>Hey {userdata && userdata.loggedIn ? userdata.user.username : 'fellow'}!</h1>
             <div className={styles.actionButtons}>
               <Link
                 className={clsx(
@@ -89,7 +95,11 @@ function Dashboard() {
               <TabPanel>
                 <div className="panel-content">
                   <div className={styles.fellowStoriesContainer}>
-                    {fellowStories.map(item => <StoryItem key={item.id} data={item} />)}
+                    {fellowStoriesLoading ?
+                      <PulseLoader color={'#1D539F'} size={10} />
+                      :
+                      fellowStories.map(item => <StoryItem key={item.id} data={item} />)
+                    }
                   </div>
                 </div>
               </TabPanel>

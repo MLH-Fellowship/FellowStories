@@ -119,5 +119,11 @@ module.exports = {
   ],
   plugins: [
     'docusaurus-plugin-sass',
+    [
+      'docusaurus2-dotenv',
+      {
+        systemvars: true,
+      },
+    ],
   ],
 };

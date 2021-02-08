@@ -10,7 +10,7 @@ function StoryItem({ data }) {
   return (
       <div className={styles.storyItem}>
         <div className={styles.title}>{data.title}</div>
-        <div className={styles.date}><span className={styles.semibold}>Published:</span> Jan 23, 2021・<span className={styles.semibold}>Edited:</span> Feb 23, 2021</div>
+        <div className={styles.date}><span className={styles.semibold}>Published:</span> {new Date(data.createdAt).toDateString()}・<span className={styles.semibold}>Edited:</span> {new Date(data.updatedAt).toDateString()}</div>
         <div className={styles.views}><FontAwesomeIcon icon={faEye} /><span className="marginleft5">{data.views}</span></div>
         <div className={styles.editButton}>
           <Link
