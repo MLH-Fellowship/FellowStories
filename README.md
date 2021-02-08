@@ -1,5 +1,4 @@
-<div align="center"> <img width="680" alt="Fellow Stories" src="https://repository-images.githubusercontent.com/335190155/1a750d00-672d-11eb-95f1-c71a960d3a9d">
-</div>
+![Fellow Stories](https://i.ibb.co/FXx2vq1/Capture.png)
 
 <br /><br />
 
