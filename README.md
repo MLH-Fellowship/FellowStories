@@ -1,4 +1,6 @@
-![Fellow Stories](https://i.ibb.co/FXx2vq1/Capture.png)
+<div align="center">
+  <img width="680" alt="Fellow Stories" src="https://i.ibb.co/FXx2vq1/Capture.png">
+</div>
 
 <br /><br />
 
